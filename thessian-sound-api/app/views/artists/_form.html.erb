@@ -1,0 +1,27 @@
+<%= form_for @artist do |f| %>
+    <%= f.label "Artist Name:" %>
+    <%= f.text_field :artist_name %><br/>
+
+    <%= f.fields_for :songs do |sec_form| %>
+      <%= sec_form.label :title %>
+      <%= sec_form.text_field :title %><br/>
+    <% end %>
+  
+    <%= f.submit %>
+  <% end %>
+  
+  
+  <% if @artist.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@artist.errors.count, "An error") %>
+        prohibited this artist's information from being saved:
+      </h2>
+   
+      <ul>
+      <% @artist.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
