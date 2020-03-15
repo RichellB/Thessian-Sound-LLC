@@ -3,28 +3,26 @@ class ArtistsController < ApplicationController
     before_action :authenticate_user!
 
       def index
-        @artist = Artist.find_by_id(params[:id])
-            if user_signed_in?
-                @artists = current_user.artists.alphabetical_order
-            end 
-       end
-   
-       def new
-           @artist = Artist.new
+       # @artist = Artist.find_by_id(params[:id])
+         #   if user_signed_in?
+            #    @artists = current_user.artists.alphabetical_order
+           # end 
+        artists = Artist.all 
+        render json: ArtistSerializer.new(artists)
        end
    
        def create
-           @artist = Artist.new(artist_params)
-           @artist.user = current_user
-           if @artist.save
-               redirect_to artists_path
-           else
-               render :new
-           end
+          newArtist = Artist.create(name: params['name'])
+          render json: ArtistSerializer.new(newArtist)
        end
 
        def show
-           @artist = Artist.find_by_id(params[:id])
+           artist = Artist.find_by(params[:id])
+       end
+
+       def destroy
+           artist = Artist.find_by(id: params[:id])
+           artist.destroy
        end
    
        private
