@@ -58,3 +58,25 @@ function renderAllSongsArtists(){
   })
 }
 
+function renderNewSongForm(){
+    formDiv.innerHTML = `
+      Song Title:
+      <input type="text" />
+      <br>
+      Album:
+      <input type="text" />
+      <br>
+      Release Year:
+      <input type="text" />
+      <br>
+      <select>
+         <option value="default" selected="selected">Select one option </option>
+       ${Artist.all.map(artist => {
+         return `<option value=${artist.id}>${artist.name}</option>`
+       }).join("")}
+      </select>
+      <button>Add a Song!</button>
+    `
+    main.appendChild(formDiv)
+  }
+  
