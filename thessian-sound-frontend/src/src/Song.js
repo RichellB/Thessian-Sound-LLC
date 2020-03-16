@@ -22,6 +22,7 @@ class Song {
         this.element.innerHTML = `
           <h3>${this.title}</h3>
           <p>Album: ${this.album}</p>
+          <p>Release Year: ${this.release_year}</p>
         `
         return this.element
       }
@@ -31,6 +32,7 @@ class Song {
         this.element.innerHTML = `
         <h1>${this.title}</h1>
         <p>Album: ${this.album}</p>
+        <p>Release Year: ${this.release_year}</p>
         <p>Artist: ${this.artist().name}</p>
         `
         return this.element
