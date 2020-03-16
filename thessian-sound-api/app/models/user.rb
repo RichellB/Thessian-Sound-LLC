@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         has_many :artists
-         has_many :songs, through: :artists
+         #has_many :artists
+         #has_many :songs, through: :artists
          has_many :beats
        
          validates :email, uniqueness: true
