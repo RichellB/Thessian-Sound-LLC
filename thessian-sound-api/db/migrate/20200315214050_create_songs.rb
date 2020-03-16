@@ -5,7 +5,7 @@ class CreateSongs < ActiveRecord::Migration[6.0]
       t.string :release_year
       t.string :album
       t.belongs_to :artist
-      t.belongs_to :user
+      #t.belongs_to :user
 
     end
   end
