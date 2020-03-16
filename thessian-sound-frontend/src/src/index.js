@@ -1,7 +1,7 @@
-const songsAdapter = new SongsAdapter("http://localhost:3000/songs")
+const songAdapter = new SongsAdapter("http://localhost:3000/songs")
 const artistsAdapter = new ArtistsAdapter("http://localhost:3000/artists")
 
-songsAdapter.fetchSongs()
+songAdapter.fetchSongs()
 artistsAdapter.fetchArtists()
 
 //Add event listener on menu buttons
@@ -17,30 +17,15 @@ formDiv.addEventListener('click', handleFormSubmit)
 
 function handleMenuClick (event){
   if (event.target.id !== menu){
-    main.innerHTML = ``
+  //  main.innerHTML = ``
     callbacks[`${event.target.id}`]()
   }
 }
 
-function handleFormSubmit(event){
-
-
-  if(event.target.tagName == "BUTTON"){
-    let inputs = formDiv.querySelectorAll('input')
-    let select = formDiv.querySelector('select')
-    let newSongObj = {
-      title: inputs[0].value,
-      album: inputs[1].value,
-      release_year: inputs[2].value,
-      artistId: select.value
-    }
-    songsAdapter.newSong(newSongObj)
-  }
-}
 
 const callbacks = {
   allSongs: renderAllSongs,
-  songsArtists: renderAllSongsArtists,
+  //songsArtists: renderAllSongsArtists,
  // newSong: renderNewSongForm,
   //newArtist: renderNewArtistForm
 }
@@ -51,6 +36,22 @@ function renderAllSongs(){
   })
   //render all songs with respective title, album, release_year and artist
 }
+
+function handleFormSubmit(event){
+
+
+    if(event.target.tagName == "BUTTON"){
+      let inputs = formDiv.querySelectorAll('input')
+      let select = formDiv.querySelector('select')
+      let newSongObj = {
+        title: inputs[0].value,
+        album: inputs[1].value,
+        release_year: inputs[2].value,
+        artistId: select.value
+      }
+      songsAdapter.newSong(newSongObj)
+    }
+  }
 
 function renderAllSongsArtists(){
   Artist.all.forEach(artist => {
