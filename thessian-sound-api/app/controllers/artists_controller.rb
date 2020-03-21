@@ -1,12 +1,9 @@
 class ArtistsController < ApplicationController
 
-    before_action :authenticate_user!
+   # before_action :authenticate_user!
 
       def index
-       # @artist = Artist.find_by_id(params[:id])
-         #   if user_signed_in?
-            #    @artists = current_user.artists.alphabetical_order
-           # end 
+    
         artists = Artist.all 
         render json: ArtistSerializer.new(artists)
        end

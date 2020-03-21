@@ -10,9 +10,10 @@ class SongsAdapter{
             respObj.data.forEach(this.sanitizedSong)
           })
           .then(() => console.log(Song.all))
-      }
-    
-      newSong(songObj){
+        }
+
+
+    newSong(songObj){
         let configObj = {
           method: "POST",
           headers: {"Content-Type": "application/json", "Accepts": "application/json"},
@@ -28,5 +29,6 @@ class SongsAdapter{
         let sanitized = {...songObj.attributes, id: songObj.id, artistId: songObj.relationships.artist.data.id}
         new Song(sanitized)
       } 
+      
 
 }
