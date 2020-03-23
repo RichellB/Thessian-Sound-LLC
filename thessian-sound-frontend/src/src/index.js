@@ -16,9 +16,9 @@ menu.addEventListener('click', handleMenuClick)
 formDiv.addEventListener('click', handleFormSubmit)
 
 function handleMenuClick (event){
-  if (event.id !== menu){
+  if (event.target.id !== menu){
     main.innerHTML = ``
-    callbacks[`${event.id}`]()
+    callbacks[`${event.target.id}`]()
   }
 }
 
@@ -81,20 +81,15 @@ function renderNewSongForm(){
     main.appendChild(formDiv)
   }
 
+  function renderNewArtistForm(){
+    formDiv.innerHTML = `
+      Artist Name:
+      <input type="text" />
+      <br>
+      <button>Add a New Artist!</button>
+    `
+    main.appendChild(formDiv)
+  }
 
-  newSong(songObj){
-        let configObj = {
-          method: "POST",
-          headers: {"Content-Type": "application/json", "Accepts": "application/json"},
-          body: JSON.stringify(songObj)
-        }
-        fetch(this.baseURL, configObj)
-          .then(res => res.json())
-          .then((respObj) => this.sanitizedSong(respObj.data))
-      }
-    
-      sanitizedSong(songObj){
-        console.log(songObj);
-        let sanitized = {...songObj.attributes, id: songObj.id, artistId: songObj.relationships.artist.data.id}
-        new Song(sanitized)
-      } 
+
+  
