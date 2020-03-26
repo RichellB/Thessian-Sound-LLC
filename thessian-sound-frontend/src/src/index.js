@@ -27,7 +27,8 @@ const callbacks = {
   allSongs: renderAllSongs,
   songsArtists: renderAllSongsArtists,
   newSong: renderNewSongForm,
-  newArtist: renderNewArtistForm
+  newArtist: renderNewArtistForm,
+  sortSongs: renderSortedSongs
 }
 
 function renderAllSongs(){
@@ -91,5 +92,28 @@ function renderNewSongForm(){
     main.appendChild(formDiv)
   }
 
-
+  function compare(a, b) {
+    // Use toUpperCase() to ignore character casing
+    const objTitleA = a.title.toUpperCase()
+    const objTitleB = b.title.toUpperCase()
   
+    let result = 0
+    if (objTitleA > objTitleB) {
+      result = 1
+    } else if (objTitleA < objTitleB) {
+      result = -1
+    }
+    return result;
+  }
+
+  function renderSortedSongs(){
+    main.innerHTML = ``
+    songs = Song.all
+    const sortArr = [...songs]
+    sortedArr = sortArr.sort(compare)
+    console.log(sortedArr)
+    sortArr.forEach(song => {
+      main.appendChild(song.fullRender())
+    })
+    
+  }

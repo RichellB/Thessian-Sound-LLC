@@ -14,18 +14,17 @@ ActiveRecord::Schema.define(version: 2020_03_15_214050) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
-    t.string "email"
-    t.string "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "songs", force: :cascade do |t|
     t.string "title"
-    t.string "release_year"
     t.string "album"
-    t.integer "artist_id"
-    t.index ["artist_id"], name: "index_songs_on_artist_id"
+    t.string "release_year"
+    t.string "artist_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

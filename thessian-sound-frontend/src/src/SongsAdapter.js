@@ -26,9 +26,10 @@ class SongsAdapter{
     
       sanitizedSong(songObj){
         console.log(songObj);
-        let sanitized = {...songObj.attributes, id: songObj.id} //, artistId: songObj.relationships.artist_name.data.id}
+        let sanitized = {...songObj.attributes, id: songObj.id, artistId: songObj.relationships.artist.data.id}
         new Song(sanitized)
       } 
-      
+
+
 
 }

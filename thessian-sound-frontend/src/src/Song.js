@@ -33,6 +33,7 @@ class Song {
         <h1>${this.title}</h1>
         <p>Album: ${this.album}</p>
         <p>Release Year: ${this.release_year}</p>
+        <p>Artist: ${this.artist().name}</p>
         
         `
         return this.element
